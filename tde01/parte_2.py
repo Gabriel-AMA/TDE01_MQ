@@ -1,34 +1,27 @@
 import random
 
 def random_walk_2(n):
-    x, y = 0, 0
-    for _ in range(n):
-        dx, dy = random.choice([(0,1), (0,-1), (1,0), (-1,0)])
+    x,y=0,0
+    for i in range(n):
+        (dx,dy) = random.choice([(0,1),(0,-1),(1,0),(-1,0)])
         x += dx
         y += dy
-    return (x, y)
+    return x,y
 
-numero_caminhadas = 20000
-limite_distancia_media = 5
-max_n = 100  # podemos aumentar se quiser
+numero_caminhadas=30000
+media_mais_longa = [100]
+caminhada_mais_longa = [0]
 
-melhor_n = 0
-melhor_media = 0
-
-for comprimento in range(1, max_n + 1):
-    soma_distancias = 0
-
-    for _ in range(numero_caminhadas):
-        x, y = random_walk_2(comprimento)
+for comprimento_caminhada in range(1,51):
+    sem_transporte=0
+    for i in range(numero_caminhadas):
+        x,y = random_walk_2(comprimento_caminhada)
         distancia = abs(x) + abs(y)
-        soma_distancias += distancia
-
-    distancia_media = soma_distancias / numero_caminhadas
-    print(f"Comprimento = {comprimento} / Distância média = {distancia_media:.4f}")
-
-    if distancia_media <= limite_distancia_media:
-        melhor_n = comprimento
-        melhor_media = distancia_media
-
-print(f"\n📌 Maior comprimento com distância média ≤ {limite_distancia_media}: {melhor_n}")
-print(f"   Distância média nesse ponto: {melhor_media:.4f}")
+        if distancia <=5:
+            sem_transporte+=1
+    sem_transporte_porcentagem = (float(sem_transporte) / numero_caminhadas)*100
+    if sem_transporte_porcentagem>50:
+        caminhada_mais_longa.append(comprimento_caminhada)
+        media_mais_longa.append(sem_transporte_porcentagem)
+    print("comprimento da caminhada = ", comprimento_caminhada, "/ % de não ter transporte",sem_transporte_porcentagem)
+print("O maior comprimento que te deixa em média mais próximo de casa é ", caminhada_mais_longa[-1], "com uma média de ", media_mais_longa[-1])

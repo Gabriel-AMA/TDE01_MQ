@@ -1,42 +1,37 @@
 import random
 
-def hex_random_walk(n):
-    # Coordenadas axiais q, r
-    q, r = 0, 0
-    direcoes = [(+1, 0), (+1, -1), (0, -1), (-1, 0), (-1, +1), (0, +1)]
+direcoes = [(1, 0), (-1, 1), (0, -1)]
 
+def triangular_random_walk(n):
+    x, y = 0, 0
     for _ in range(n):
-        dq, dr = random.choice(direcoes)
-        q += dq
-        r += dr
+        dx, dy = random.choice(direcoes)
+        x += dx
+        y += dy
+    return x, y
 
-    return q, r
+def triangular_distance(x, y):
+    return abs(x) + abs(y)
 
-def hex_distance(q, r):
-    # Distância de Manhattan para hexágonos (coordenadas axiais)
-    return (abs(q) + abs(q + r) + abs(r)) // 2
+numero_caminhadas = 30000
+media_mais_longa = [100]
+caminhada_mais_longa = [0]
 
-numero_caminhadas = 20000
-limite_distancia_media = 5
-max_n = 100
-
-melhor_n = 0
-melhor_media = 0
-
-for comprimento in range(1, max_n + 1):
-    soma_distancias = 0
+for comprimento_caminhada in range(1, 51):
+    sem_transporte = 0
 
     for _ in range(numero_caminhadas):
-        q, r = hex_random_walk(comprimento)
-        distancia = hex_distance(q, r)
-        soma_distancias += distancia
+        x, y = triangular_random_walk(comprimento_caminhada)
+        distancia = triangular_distance(x, y)
+        if distancia <= 5:
+            sem_transporte += 1
 
-    distancia_media = soma_distancias / numero_caminhadas
-    print(f"Comprimento = {comprimento} / Distância média = {distancia_media:.4f}")
+    sem_transporte_porcentagem = (sem_transporte / numero_caminhadas) * 100
 
-    if distancia_media <= limite_distancia_media:
-        melhor_n = comprimento
-        melhor_media = distancia_media
+    if sem_transporte_porcentagem > 50:
+        caminhada_mais_longa.append(comprimento_caminhada)
+        media_mais_longa.append(sem_transporte_porcentagem)
 
-print(f"\n📌 Maior comprimento com distância média ≤ {limite_distancia_media}: {melhor_n}")
-print(f"   Distância média nesse ponto: {melhor_media:.4f}")
+    print(f"Comprimento da caminhada = {comprimento_caminhada} / % sem precisar transporte = {sem_transporte_porcentagem:.2f}%")
+
+print(f"\nO maior comprimento que te deixa em média mais próximo de casa é {caminhada_mais_longa[-1]} com uma média de {media_mais_longa[-1]:.2f}%")

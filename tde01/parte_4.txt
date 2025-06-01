@@ -1,0 +1,6 @@
+Quando se altera as quadras para hexagonos o que ocorre é a redução de possilidades, pois agora cada 
+intersseção tem apenas 3 caminhos possiveis e a reversabilidade do caminhante, sem contar ele voltar pelo 
+mesmo caminho é menor, pois seria preciso 6 movimentos especificos comparados aos 4 do quadrado, essa 
+disparidade, assim como os angulos de possibilidade dos hexagonos tende a gerar um caminho que se afasta mais 
+rapidamente da origem, portanto as quadras hexagonais levam o caminhante a ficar mais distante da origem
+devido a dificuldade de caminhos circulares de ocorrer nesse cenário.
