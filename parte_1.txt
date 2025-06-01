@@ -1,0 +1,14 @@
+Isso acontece por questão da quantidade de resultados possiveis dentro do escopo e paridade do resultados
+devido a soma dos valores ds dimensões x e y sempre vai ser correspondente ao valor de quadras andadas, 
+isso é se o numero for par a soma vai ser par, daí basta comparar a quantidades de resultados possiveis que 
+satisfaçam a condição, se o caso a quantidade máxima de quadras que resulta no retorno para casa a pé é 4
+existem cinco resultados possiveis que satisfaçam essa condição {0,1,2,3,4} e sabendo que a soma se x e y
+dependem da paridade do comprimento da caminhada, se esse valor for impar os unicos resultados possiveis que
+satisfaçam a condição são {1 e 3} apenas dois valores, enquanto para valores pares existem 3 valores possiveis
+{0,2 e 4}, se vc inverter, porém se vc colocar um valor impar para antender as condições como o máximo de 
+quadras para retornar para casa é 5 o número de valores no intervalo para cada paridade é o mesmo {1,3 e 5} 
+para impares e {0,2 e 4} para pares, mas se vc fizer um teste vai notar que ainda existe uma disparidade 
+entre os resultados, mas dessa vez os passo de número impar resultam em uma chance menor que ter que pegar
+transporte até em casa, isso pq quando a quantidade de valores que antendem o requisito são os mesmos a 
+única coisa que muda é a probabilidade deles cairem, existem muito mais combinações de movimento que resultam
+em você estar a 5 quadras de casa do que a 4.
